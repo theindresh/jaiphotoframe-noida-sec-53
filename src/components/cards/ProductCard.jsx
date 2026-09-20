@@ -35,7 +35,7 @@ export default function ProductCard({ product }) {
   return (
     <>
       <div
-        className="group relative flex flex-col justify-between bg-white rounded-2xl border border-[#E8D9C5]/90 hover:border-[#A67C3A] p-3 sm:p-3.5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer h-full select-none shadow-xs"
+        className="group relative flex flex-col justify-between bg-white rounded-2xl border border-[#E8D9C5] hover:border-[#A67C3A] p-3 sm:p-3.5 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer h-full select-none shadow-xs"
         onClick={() => setShowDetail(true)}
         role="button"
         tabIndex={0}
@@ -46,7 +46,7 @@ export default function ProductCard({ product }) {
           {/* Top Bar: Badge & Wishlist Heart */}
           <div className="absolute top-4 left-4 right-4 z-20 flex items-center justify-between pointer-events-none">
             <span className={`text-[10px] sm:text-[11px] font-bold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-white shadow-xs pointer-events-auto tracking-wide ${badgeBg}`}>
-              {product.badge || 'Signature'}
+              {product.badge || 'Featured'}
             </span>
 
             <button

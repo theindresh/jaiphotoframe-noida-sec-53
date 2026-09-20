@@ -52,52 +52,50 @@ const DEMO_PRESETS = [
     badge: 'Table / Desk',
     image: 'https://images.unsplash.com/photo-1519689680058-324335c77eba?w=600&auto=format&fit=crop&q=80',
   },
-  {
-    id: 'p-5',
-    name: 'LED 12 × 18 in',
-    styleName: 'LED Illuminated Box',
-    label: 'Backlit Photo Frame',
-    aspectRatio: '4 / 3',
-    caption: 'Light Up Your Memories ✨',
-    moulding: 'LED Box',
-    badge: 'Illuminated',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&auto=format&fit=crop&q=80',
-  },
 ]
 
 export default function HeroSection() {
   const [activePreset, setActivePreset] = useState(DEMO_PRESETS[0])
 
   return (
-    <section className="hero-section" id="home">
-      <div className="content-wrapper hero-grid">
+    <section className="py-12 sm:py-16 lg:py-20 bg-[#FAF8F4] overflow-hidden" id="home">
+      <div className="content-wrapper grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
+        
         {/* Left Copy Column */}
         <motion.div
-          className="hero-copy-wrap"
+          className="flex flex-col"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: 'easeOut' }}
         >
-          <div className="hero-pill-badge">
-            <Sparkles size={14} color="var(--gold-dark)" />
+          {/* Tagline Badge */}
+          <div className="inline-flex items-center gap-2 bg-[#F7F1E5] text-[#8B5E34] border border-[#E8D9C5] px-3.5 py-1.5 rounded-full text-xs font-bold w-fit mb-5 shadow-2xs">
+            <Sparkles size={14} className="text-[#A67C3A]" />
             <span>Noida's Premier Framing Studio</span>
           </div>
 
-          <h1 className="hero-heading">
+          {/* Main Headline */}
+          <h1 className="text-4xl sm:text-5xl lg:text-[56px] font-bold font-serif text-stone-900 leading-[1.12] mb-3">
             Your Memories
-            <span className="gold-serif">Our Frame</span>
+            <span className="block text-[#A67C3A] italic font-semibold">Our Frame</span>
           </h1>
 
-          <div className="hero-hindi-subtitle hindi-font">
-            {STUDIO_INFO.tagline} <span className="heart">❤️</span>
+          {/* Hindi Tagline */}
+          <div className="hindi-font text-xl sm:text-2xl text-[#8B5E34] font-semibold mb-4 flex items-center gap-2">
+            {STUDIO_INFO.tagline} <span className="text-[#D32F2F]">❤️</span>
           </div>
 
-          <p className="hero-description">
+          {/* Description */}
+          <p className="text-stone-600 text-base sm:text-lg leading-relaxed max-w-xl mb-8">
             Premium Photo Frames, Custom Designs, Collages &amp; Personalised Gifts in Noida Sector 53. Handcrafted with museum-grade care for generations of love.
           </p>
 
-          <div className="hero-cta-group">
-            <Link to="/collections" className="btn-primary-hero">
+          {/* CTA Group */}
+          <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mb-8">
+            <Link
+              to="/collections"
+              className="inline-flex items-center gap-2.5 bg-[#A67C3A] hover:bg-[#8B5E34] text-white px-7 py-3.5 rounded-full font-bold text-sm sm:text-base shadow-md transition-all active:scale-95 cursor-pointer"
+            >
               <span>Explore Collections</span>
               <ArrowRight size={18} />
             </Link>
@@ -106,44 +104,46 @@ export default function HeroSection() {
               href={makeWhatsAppUrl(`Hello Jai Photo Frame! I am looking for a ${activePreset.name} frame (${activePreset.styleName}). Please share quote.`)}
               target="_blank"
               rel="noreferrer"
-              className="btn-whatsapp-hero"
+              className="inline-flex items-center gap-2.5 bg-white hover:bg-[#FAF8F4] border border-[#E8D9C5] hover:border-[#25D366] text-stone-800 hover:text-[#25D366] px-6 py-3.5 rounded-full font-bold text-sm sm:text-base shadow-xs transition-all active:scale-95 cursor-pointer"
             >
-              <WhatsAppIcon size={22} variant="official" />
+              <WhatsAppIcon size={20} variant="official" />
               <span>Chat on WhatsApp</span>
             </a>
           </div>
 
-          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-2.5 sm:gap-4 mt-6">
-            <div className="trust-badge-item">
-              <Check size={16} strokeWidth={2.8} />
+          {/* 4 Trust Badges */}
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-6 pt-5 border-t border-[#E8D9C5]/80">
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-stone-700">
+              <Check size={16} className="text-[#A67C3A] shrink-0" strokeWidth={2.8} />
               <span>Premium Quality</span>
             </div>
-            <div className="trust-badge-item">
-              <Check size={16} strokeWidth={2.8} />
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-stone-700">
+              <Check size={16} className="text-[#A67C3A] shrink-0" strokeWidth={2.8} />
               <span>Custom Designs</span>
             </div>
-            <div className="trust-badge-item">
-              <Check size={16} strokeWidth={2.8} />
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-stone-700">
+              <Check size={16} className="text-[#A67C3A] shrink-0" strokeWidth={2.8} />
               <span>For Every Occasion</span>
             </div>
-            <div className="trust-badge-item">
-              <Check size={16} strokeWidth={2.8} />
-              <span>Local Noida Studio</span>
+            <div className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-stone-700">
+              <Check size={16} className="text-[#A67C3A] shrink-0" strokeWidth={2.8} />
+              <span>Local Studio in Noida</span>
             </div>
           </div>
         </motion.div>
 
-        {/* Right Hero Demo Frame Showcase */}
-        <div className="hero-visual-wrapper">
-          <div className="handwritten-annotation handwriting-font">
+        {/* Right Hero Frame Visual Showcase */}
+        <div className="relative flex flex-col items-center">
+          {/* Handwritten Annotation on Top-Right */}
+          <div className="absolute -top-7 right-2 sm:right-6 z-20 text-stone-700 handwriting-font text-xl sm:text-2xl rotate-3 pointer-events-none flex flex-col items-center">
             <span>Frames that tell your story ♡</span>
-            <svg className="curve-arrow" viewBox="0 0 50 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <svg className="w-9 h-6 text-[#8B5E34] -scale-x-100 rotate-12" viewBox="0 0 50 30" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M5 25 Q 35 28 42 8 M 32 6 L 44 8 L 41 18"/>
             </svg>
           </div>
 
-          <div className="w-full max-w-[440px] flex flex-col gap-4">
-            {/* Interactive Frame Presets Switcher */}
+          <div className="w-full max-w-[430px] flex flex-col gap-4">
+            {/* Size Presets */}
             <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
               {DEMO_PRESETS.map((preset) => (
                 <button
@@ -152,8 +152,8 @@ export default function HeroSection() {
                   onClick={() => setActivePreset(preset)}
                   className={`px-3 py-1.5 rounded-full text-xs font-bold whitespace-nowrap cursor-pointer transition-all duration-200 ${
                     activePreset.id === preset.id
-                      ? 'border-[1.5px] border-[#8B5E34] bg-[#FAF5EF] text-[#8B5E34] shadow-[0_2px_8px_rgba(139,94,52,0.2)]'
-                      : 'border border-[#EBDCCB] bg-white text-stone-800 hover:border-[#8B5E34]/50'
+                      ? 'border-[1.5px] border-[#8B5E34] bg-[#FAF5EF] text-[#8B5E34] shadow-xs'
+                      : 'border border-[#E8D9C5] bg-white text-stone-700 hover:border-[#8B5E34]'
                   }`}
                 >
                   {preset.name}
@@ -161,13 +161,13 @@ export default function HeroSection() {
               ))}
             </div>
 
-            {/* Animated Frame Demo */}
+            {/* Frame Showcase Card */}
             <AnimatePresence mode="wait">
               <motion.div
                 key={activePreset.id}
-                initial={{ opacity: 0, scale: 0.96 }}
+                initial={{ opacity: 0, scale: 0.97 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.96 }}
+                exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.3 }}
               >
                 <FrameVisualDemo
@@ -188,6 +188,7 @@ export default function HeroSection() {
             </div>
           </div>
         </div>
+
       </div>
     </section>
   )

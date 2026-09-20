@@ -3,8 +3,7 @@ import OccasionsSection from '../components/home/OccasionsSection'
 import FeaturedSection from '../components/home/FeaturedSection'
 import CustomFrameBanner from '../components/home/CustomFrameBanner'
 import GallerySection from '../components/home/GallerySection'
-import WhyChooseSection from '../components/home/WhyChooseSection'
-import TestimonialsSection from '../components/home/TestimonialsSection'
+import WhyChooseAndReviewsSection from '../components/home/WhyChooseAndReviewsSection'
 import StudioLocationSection from '../components/home/StudioLocationSection'
 import ContactCtaBanner from '../components/home/ContactCtaBanner'
 
@@ -16,8 +15,7 @@ export default function HomePage() {
       <FeaturedSection />
       <CustomFrameBanner />
       <GallerySection />
-      <WhyChooseSection />
-      <TestimonialsSection />
+      <WhyChooseAndReviewsSection />
       <StudioLocationSection />
       <ContactCtaBanner />
     </>

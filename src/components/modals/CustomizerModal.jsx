@@ -41,37 +41,53 @@ export default function CustomizerModal() {
   })
 
   return (
-    <div className="modal-overlay" onClick={closeCustomModal} role="dialog" aria-modal="true">
-      <div className="custom-builder-modal" onClick={e => e.stopPropagation()}>
-        <div className="modal-header-bar">
+    <div
+      className="fixed inset-0 z-[200] bg-stone-950/75 backdrop-blur-xs flex items-center justify-center p-4"
+      onClick={closeCustomModal}
+      role="dialog"
+      aria-modal="true"
+    >
+      <div
+        className="bg-white rounded-3xl w-full max-w-[540px] max-h-[90vh] flex flex-col shadow-2xl border border-[#E8D9C5] overflow-hidden"
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Modal Header */}
+        <div className="flex items-center justify-between p-6 border-b border-[#E8D9C5] bg-[#FAF8F4]">
           <div>
-            <h3 className="serif-font text-[22px] font-bold text-stone-900">
+            <h3 className="font-serif text-xl font-bold text-stone-900">
               Create Your Custom Frame
             </h3>
-            <p className="text-[13px] text-[#8B5E34] font-semibold">
+            <p className="text-xs text-[#8B5E34] font-semibold mt-0.5">
               Customize your memories &amp; get instant WhatsApp quote
             </p>
           </div>
           <button
             type="button"
-            className="modal-close-btn"
+            className="w-8 h-8 rounded-full bg-white border border-stone-200 flex items-center justify-center text-stone-500 hover:text-stone-900 transition-colors cursor-pointer"
             onClick={closeCustomModal}
             aria-label="Close customizer"
           >
-            <X size={24} />
+            <X size={18} />
           </button>
         </div>
 
-        <div className="modal-body">
+        {/* Modal Body */}
+        <div className="p-6 overflow-y-auto flex flex-col gap-5 text-sm">
           {/* Step 1: Occasion */}
           <div>
-            <label className="form-group-label">1. Select Occasion</label>
-            <div className="pill-select-grid">
+            <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">
+              1. Select Occasion
+            </label>
+            <div className="flex flex-wrap gap-2">
               {occasionsList.map(occ => (
                 <button
                   key={occ}
                   type="button"
-                  className={`pill-select-btn ${customOccasion === occ ? 'active' : ''}`}
+                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                    customOccasion === occ
+                      ? 'bg-[#8B5E34] text-white shadow-xs'
+                      : 'bg-stone-50 border border-stone-200 text-stone-700 hover:bg-stone-100'
+                  }`}
                   onClick={() => setCustomOccasion(occ)}
                 >
                   {occ}
@@ -82,13 +98,19 @@ export default function CustomizerModal() {
 
           {/* Step 2: Frame Moulding Material */}
           <div>
-            <label className="form-group-label">2. Choose Frame Moulding Style</label>
-            <div className="pill-select-grid">
+            <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">
+              2. Frame Moulding Style
+            </label>
+            <div className="flex flex-wrap gap-2">
               {frameTypesList.map(style => (
                 <button
                   key={style}
                   type="button"
-                  className={`pill-select-btn ${customFrameType === style ? 'active' : ''}`}
+                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                    customFrameType === style
+                      ? 'bg-[#8B5E34] text-white shadow-xs'
+                      : 'bg-stone-50 border border-stone-200 text-stone-700 hover:bg-stone-100'
+                  }`}
                   onClick={() => setCustomFrameType(style)}
                 >
                   {style}
@@ -99,13 +121,19 @@ export default function CustomizerModal() {
 
           {/* Step 3: Size Dimensions */}
           <div>
-            <label className="form-group-label">3. Frame Dimensions</label>
-            <div className="pill-select-grid">
+            <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">
+              3. Frame Dimensions
+            </label>
+            <div className="flex flex-wrap gap-2">
               {sizesList.map(sz => (
                 <button
                   key={sz}
                   type="button"
-                  className={`pill-select-btn ${customSize === sz ? 'active' : ''}`}
+                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                    customSize === sz
+                      ? 'bg-[#8B5E34] text-white shadow-xs'
+                      : 'bg-stone-50 border border-stone-200 text-stone-700 hover:bg-stone-100'
+                  }`}
                   onClick={() => setCustomSize(sz)}
                 >
                   {sz}
@@ -116,13 +144,19 @@ export default function CustomizerModal() {
 
           {/* Step 4: Inner Museum Matte */}
           <div>
-            <label className="form-group-label">4. Museum Matting Background</label>
-            <div className="pill-select-grid">
+            <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">
+              4. Museum Matting Background
+            </label>
+            <div className="flex flex-wrap gap-2">
               {mattesList.map(mat => (
                 <button
                   key={mat}
                   type="button"
-                  className={`pill-select-btn ${customMatte === mat ? 'active' : ''}`}
+                  className={`px-3 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                    customMatte === mat
+                      ? 'bg-[#8B5E34] text-white shadow-xs'
+                      : 'bg-stone-50 border border-stone-200 text-stone-700 hover:bg-stone-100'
+                  }`}
                   onClick={() => setCustomMatte(mat)}
                 >
                   {mat}
@@ -133,42 +167,44 @@ export default function CustomizerModal() {
 
           {/* Step 5: Custom Inscription */}
           <div>
-            <label className="form-group-label">5. Custom Bottom Message / Inscription</label>
+            <label className="block text-xs font-bold uppercase tracking-wider text-stone-700 mb-2">
+              5. Custom Message / Inscription
+            </label>
             <input
               type="text"
-              className="custom-text-input"
+              className="w-full px-4 py-2.5 rounded-xl border border-stone-300 focus:border-[#8B5E34] focus:outline-hidden text-sm"
               value={customNote}
               onChange={e => setCustomNote(e.target.value)}
-              placeholder="e.g. Good Memories Forever ❤️ or Rahul & Priya - 2026"
+              placeholder="e.g. Good Memories Forever ❤️"
             />
           </div>
 
           {/* Live Preview Box */}
-          <div className="custom-preview-box">
+          <div className="bg-[#FAF8F4] rounded-2xl border border-[#E8D9C5] p-4 text-center">
             <div
-              className={`custom-preview-frame rounded-lg overflow-hidden ${
+              className={`max-w-[240px] mx-auto p-3 rounded-xl shadow-md mb-2 ${
                 customFrameType.includes('Gold')
-                  ? 'bg-[#8B5E34] border-[3px] border-[#C49A53]'
+                  ? 'bg-[#8B5E34] border-2 border-[#C49A53]'
                   : customFrameType.includes('Black')
-                  ? 'bg-[#1C1A18] border-[3px] border-[#2B160B]'
-                  : 'bg-[#422414] border-[3px] border-[#2B160B]'
+                  ? 'bg-[#1C1A18] border-2 border-[#2B160B]'
+                  : 'bg-[#422414] border-2 border-[#2B160B]'
               }`}
             >
               <div
-                className={`p-3 ${
+                className={`p-2.5 rounded ${
                   customMatte.includes('Black')
-                    ? 'bg-[#1F1E1D] text-[#FAF8F4] border border-white/10'
-                    : 'bg-[#FAF8F4] text-[#1F1F1F] border border-black/10'
+                    ? 'bg-[#1F1E1D] text-[#FAF8F4]'
+                    : 'bg-[#FAF8F4] text-[#1F1F1F]'
                 }`}
               >
-                <div className="w-full h-[110px] overflow-hidden bg-stone-200">
+                <div className="w-full h-24 overflow-hidden rounded bg-stone-200 mb-1.5">
                   <img
                     src="https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=600&q=80"
                     alt="Preview frame sample"
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <div className="mt-2 text-[13px] font-semibold text-center">
+                <div className="text-xs font-bold">
                   {customNote || 'Your Inscription Here'}
                 </div>
               </div>
@@ -183,10 +219,10 @@ export default function CustomizerModal() {
             href={whatsAppUrl}
             target="_blank"
             rel="noreferrer"
-            className="btn-whatsapp-header justify-center w-full p-3.5 text-[15px] rounded-xl shadow-[0_4px_16px_rgba(37,211,102,0.3)]"
+            className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-[#25D366] hover:bg-[#1EBE5B] text-white font-bold text-sm shadow-md transition-all active:scale-95"
           >
-            <WhatsAppIcon size={22} variant="badge" />
-            <span>Send Custom Specification to WhatsApp</span>
+            <WhatsAppIcon size={20} variant="badge" />
+            <span>Send Custom Spec to WhatsApp</span>
           </a>
         </div>
       </div>
