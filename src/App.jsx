@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { FrameProvider } from './context/FrameContext'
 import MainLayout from './layouts/MainLayout'
 import HomePage from './pages/HomePage'
@@ -12,7 +12,7 @@ import './App.css'
 export default function App() {
   return (
     <FrameProvider>
-      <HashRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
@@ -24,7 +24,7 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </FrameProvider>
   )
 }
