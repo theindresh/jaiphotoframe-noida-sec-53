@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { Gem, Sparkles, CalendarHeart, MapPin, Users, Star, ChevronLeft, ChevronRight } from 'lucide-react'
 import { STUDIO_INFO, TESTIMONIALS } from '../../constants/studioData'
 
@@ -32,7 +33,7 @@ export default function WhyChooseAndReviewsSection() {
               LEFT SIDE: Why Choose जय फोटो फ्रेम? (5 Features in a Row)
               ══════════════════════════════════════════════════════════════════ */}
           <div className="flex flex-col">
-            <div className="mb-6">
+            <div className="mb-6 text-center sm:text-left">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold font-serif text-stone-900 leading-tight">
                 Why Choose <span className="hindi-font font-bold text-[#8B5E34]">{STUDIO_INFO.nameHindi}?</span>
               </h2>
@@ -63,7 +64,7 @@ export default function WhyChooseAndReviewsSection() {
           </div>
 
           {/* ══════════════════════════════════════════════════════════════════
-              RIGHT SIDE: What Our Customers Say (Review Card with Controls)
+              RIGHT SIDE: What Our Customers Say (Review Card with Animated Controls)
               ══════════════════════════════════════════════════════════════════ */}
           <div className="flex flex-col">
             <div className="mb-6 flex items-center justify-between">
@@ -73,7 +74,7 @@ export default function WhyChooseAndReviewsSection() {
             </div>
 
             {/* Testimonial Card */}
-            <div className="bg-white rounded-2xl border border-[#E8D9C5] p-6 shadow-sm flex flex-col justify-between relative min-h-[210px]">
+            <div className="bg-white rounded-2xl border border-[#E8D9C5] p-6 shadow-sm flex flex-col justify-between relative min-h-[220px]">
               {/* Reviewer Header & Stars */}
               <div className="flex items-start justify-between gap-4 mb-4">
                 <div className="flex items-center gap-3">
@@ -96,30 +97,39 @@ export default function WhyChooseAndReviewsSection() {
                 </div>
 
                 {/* Left/Right Arrow Controls */}
-                <div className="flex items-center gap-1.5 shrink-0">
+                <div className="flex items-center gap-2 shrink-0">
                   <button
                     type="button"
                     onClick={handlePrev}
-                    className="w-8 h-8 rounded-full border border-[#E8D9C5] bg-[#FAF8F4] hover:bg-[#FAF5EF] hover:border-[#8B5E34] text-stone-700 flex items-center justify-center transition-colors shadow-2xs cursor-pointer active:scale-95"
+                    className="w-9 h-9 rounded-full border border-[#E8D9C5] bg-[#FAF8F4] hover:bg-[#FAF5EF] hover:border-[#8B5E34] text-stone-800 flex items-center justify-center transition-all shadow-2xs hover:shadow-xs cursor-pointer active:scale-90"
                     aria-label="Previous testimonial"
                   >
-                    <ChevronLeft size={16} />
+                    <ChevronLeft size={18} />
                   </button>
                   <button
                     type="button"
                     onClick={handleNext}
-                    className="w-8 h-8 rounded-full border border-[#E8D9C5] bg-[#FAF8F4] hover:bg-[#FAF5EF] hover:border-[#8B5E34] text-stone-700 flex items-center justify-center transition-colors shadow-2xs cursor-pointer active:scale-95"
+                    className="w-9 h-9 rounded-full border border-[#E8D9C5] bg-[#FAF8F4] hover:bg-[#FAF5EF] hover:border-[#8B5E34] text-stone-800 flex items-center justify-center transition-all shadow-2xs hover:shadow-xs cursor-pointer active:scale-90"
                     aria-label="Next testimonial"
                   >
-                    <ChevronRight size={16} />
+                    <ChevronRight size={18} />
                   </button>
                 </div>
               </div>
 
-              {/* Quote */}
-              <p className="text-sm text-stone-700 leading-relaxed italic mb-4">
-                "{currentReview.text}"
-              </p>
+              {/* Animated Quote */}
+              <AnimatePresence mode="wait">
+                <motion.p
+                  key={currentReview.id}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                  className="text-sm text-stone-700 leading-relaxed italic mb-4 min-h-[44px]"
+                >
+                  "{currentReview.text}"
+                </motion.p>
+              </AnimatePresence>
 
               {/* Bottom Dots */}
               <div className="flex items-center justify-center gap-1.5 pt-2 border-t border-[#E8D9C5]/50">
@@ -129,7 +139,7 @@ export default function WhyChooseAndReviewsSection() {
                     type="button"
                     onClick={() => setActiveReviewIdx(idx)}
                     className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
-                      activeReviewIdx === idx ? 'w-5 bg-[#8B5E34]' : 'w-1.5 bg-stone-300'
+                      activeReviewIdx === idx ? 'w-5 bg-[#8B5E34]' : 'w-1.5 bg-stone-300 hover:bg-stone-400'
                     }`}
                     aria-label={`Go to review ${idx + 1}`}
                   />

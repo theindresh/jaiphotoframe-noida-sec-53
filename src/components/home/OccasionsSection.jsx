@@ -27,7 +27,8 @@ export default function OccasionsSection() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const maxIndex = Math.max(0, OCCASIONS.length - itemsPerView)
+  const totalItems = OCCASIONS.length
+  const maxIndex = Math.max(0, totalItems - itemsPerView)
 
   // Clamp currentIndex when itemsPerView changes
   useEffect(() => {
@@ -40,16 +41,18 @@ export default function OccasionsSection() {
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
-    }, 3500)
+    }, 4000)
 
     return () => clearInterval(interval)
   }, [isPaused, maxIndex])
 
-  const handlePrev = () => {
+  const handlePrev = (e) => {
+    if (e) e.preventDefault()
     setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1))
   }
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    if (e) e.preventDefault()
     setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
   }
 
@@ -72,6 +75,9 @@ export default function OccasionsSection() {
     }
     setIsPaused(false)
   }
+
+  // Shift percentage relative to motion.div's full width
+  const shiftPercentage = (currentIndex * 100) / totalItems
 
   return (
     <section
@@ -96,10 +102,10 @@ export default function OccasionsSection() {
           </div>
 
           {/* Navigation Controls */}
-          <div className="flex items-center justify-center sm:justify-end gap-2 shrink-0">
+          <div className="flex items-center justify-center sm:justify-end gap-2.5 shrink-0 z-10">
             <button
               type="button"
-              className="w-10 h-10 rounded-full border border-[#E8D9C5] bg-white hover:bg-[#FAF5EF] hover:border-[#8B5E34] text-stone-700 flex items-center justify-center transition-colors shadow-xs cursor-pointer active:scale-95"
+              className="w-10 h-10 rounded-full border border-[#E8D9C5] bg-white hover:bg-[#FAF5EF] hover:border-[#8B5E34] text-stone-800 flex items-center justify-center transition-all shadow-xs hover:shadow-md cursor-pointer active:scale-90"
               onClick={handlePrev}
               aria-label="Previous frame occasion"
             >
@@ -107,7 +113,7 @@ export default function OccasionsSection() {
             </button>
             <button
               type="button"
-              className="w-10 h-10 rounded-full border border-[#E8D9C5] bg-white hover:bg-[#FAF5EF] hover:border-[#8B5E34] text-stone-700 flex items-center justify-center transition-colors shadow-xs cursor-pointer active:scale-95"
+              className="w-10 h-10 rounded-full border border-[#E8D9C5] bg-white hover:bg-[#FAF5EF] hover:border-[#8B5E34] text-stone-800 flex items-center justify-center transition-all shadow-xs hover:shadow-md cursor-pointer active:scale-90"
               onClick={handleNext}
               aria-label="Next frame occasion"
             >
@@ -120,18 +126,20 @@ export default function OccasionsSection() {
         <div className="py-2 overflow-hidden -mx-2 sm:-mx-2.5 lg:-mx-3 px-2 sm:px-2.5 lg:px-3">
           <motion.div
             className="flex items-stretch"
+            style={{ width: `${(totalItems / itemsPerView) * 100}%` }}
             animate={{
-              x: `-${currentIndex * (100 / itemsPerView)}%`,
+              x: `-${shiftPercentage}%`,
             }}
             transition={{
-              duration: 0.6,
-              ease: [0.16, 1, 0.3, 1],
+              duration: 0.5,
+              ease: [0.25, 1, 0.5, 1],
             }}
           >
             {OCCASIONS.map((occ) => (
               <div
                 key={occ.id}
-                className="w-1/2 sm:w-1/3 lg:w-1/4 shrink-0 px-2 sm:px-2.5 lg:px-3 box-border"
+                style={{ width: `${100 / totalItems}%` }}
+                className="shrink-0 px-2 sm:px-2.5 lg:px-3 box-border"
               >
                 <OccasionCard occasion={occ} />
               </div>
